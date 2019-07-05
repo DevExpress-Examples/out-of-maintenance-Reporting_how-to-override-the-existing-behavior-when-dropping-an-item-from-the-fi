@@ -28,7 +28,7 @@ Namespace FieldListDragDrop
 			AdornerService.ResetSnapping()
 			RulerService.HideShadows()
 
-            Dim parent As XRControl = bandViewSvc.GetControlByScreenPoint(New System.Drawing.Point(e.X, e.Y))
+            Dim parent As XRControl = BandViewSvc.GetControlByScreenPoint(New System.Drawing.Point(e.X, e.Y))
 			If parent Is Nothing Then
 				Return
 			End If
@@ -36,7 +36,7 @@ Namespace FieldListDragDrop
 			Dim xRLabel As New XRRichText()
 			Dim location As PointF = GetDragDropLocation(e, xRLabel, parent)
 
-			DesignTool.AddToContainer(host, xRLabel)
+			DesignTool.AddToContainer(Host, xRLabel)
 
 			xRLabel.LocationF = location
 			xRLabel.Size = New Size(100, 25)
@@ -45,9 +45,9 @@ Namespace FieldListDragDrop
 
 		Private Function GetDragDropLocation(ByVal e As DragEventArgs, ByVal control As XRControl, ByVal parent As XRControl) As PointF
 			Dim bandPoint As PointF = EvalBandPoint(e, parent.Band)
-			bandPoint = bandViewSvc.SnapBandPoint(bandPoint, parent.Band, control, New XRControl() { control })
-			Dim screenPoint As PointF = bandViewSvc.ControlViewToScreen(bandPoint, parent.Band)
-			Return bandViewSvc.ScreenToControl(New RectangleF(screenPoint, SizeF.Empty), parent).Location
+			bandPoint = BandViewSvc.SnapBandPoint(bandPoint, parent.Band, control, New XRControl() { control })
+			Dim screenPoint As PointF = BandViewSvc.ControlViewToScreen(bandPoint, parent.Band)
+			Return BandViewSvc.ScreenToControl(New RectangleF(screenPoint, SizeF.Empty), parent).Location
 		End Function
 
 		Private Shared Function GetDragData(ByVal dataObject As IDataObject) As DragDataObject

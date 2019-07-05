@@ -17,30 +17,29 @@ namespace FieldListDragDrop {
         public MyFieldDragHandler(IDesignerHost host)
             : base(host) {
         }
-
         public override void HandleDragDrop(object sender, DragEventArgs e) {
             AdornerService.ResetSnapping();
             RulerService.HideShadows();
 
-            XRControl parent = bandViewSvc.GetControlByScreenPoint(new Point(e.X, e.Y));
+            XRControl parent = BandViewSvc.GetControlByScreenPoint(new Point(e.X, e.Y));
             if (parent == null)
                 return;
 
-            XRRichText xRLabel = new XRRichText();
-            PointF location = GetDragDropLocation(e, xRLabel, parent);
+            XRRichText demoRichText = new XRRichText();
+            PointF location = GetDragDropLocation(e, demoRichText, parent);
 
-            DesignTool.AddToContainer(host, xRLabel);
+            DesignTool.AddToContainer(Host, demoRichText);
 
-            xRLabel.LocationF = location;
-            xRLabel.Size = new Size(100, 25);
-            xRLabel.DataBindings.Add("Rtf", null, "test");
+            demoRichText.LocationF = location;
+            demoRichText.Size = new Size(100, 25);
+            demoRichText.DataBindings.Add("Rtf", null, "test");
         }
 
         private PointF GetDragDropLocation(DragEventArgs e, XRControl control, XRControl parent) {
             PointF bandPoint = EvalBandPoint(e, parent.Band);
-            bandPoint = bandViewSvc.SnapBandPoint(bandPoint, parent.Band, control, new XRControl[] { control });
-            PointF screenPoint = bandViewSvc.ControlViewToScreen(bandPoint, parent.Band);
-            return bandViewSvc.ScreenToControl(new RectangleF(screenPoint, SizeF.Empty), parent).Location;
+            bandPoint = BandViewSvc.SnapBandPoint(bandPoint, parent.Band, control, new XRControl[] { control });
+            PointF screenPoint = BandViewSvc.ControlViewToScreen(bandPoint, parent.Band);
+            return BandViewSvc.ScreenToControl(new RectangleF(screenPoint, SizeF.Empty), parent).Location;
         }
 
         static DragDataObject GetDragData(IDataObject dataObject) {

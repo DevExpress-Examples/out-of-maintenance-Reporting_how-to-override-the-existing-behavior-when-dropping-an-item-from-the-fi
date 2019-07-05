@@ -9,7 +9,7 @@ namespace FieldListDragDrop {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void ShowReportDesigner() { 
             XRDesignFormEx designForm = new XRDesignFormEx();
 
             designForm.DesignPanel.DesignerHostLoaded +=
@@ -24,6 +24,10 @@ namespace FieldListDragDrop {
             e.DesignerHost.RemoveService(typeof(IFieldListDragDropService));
             e.DesignerHost.AddService(typeof(IFieldListDragDropService), 
                 new MyFieldListDragDropService(e.DesignerHost));
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            ShowReportDesigner();
         }
     }
 
