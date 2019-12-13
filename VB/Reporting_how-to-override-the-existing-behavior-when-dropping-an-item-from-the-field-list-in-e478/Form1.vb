@@ -1,4 +1,4 @@
-﻿Imports System
+Imports System
 Imports System.Windows.Forms
 Imports DevExpress.XtraReports.Design
 Imports DevExpress.XtraReports.UserDesigner
