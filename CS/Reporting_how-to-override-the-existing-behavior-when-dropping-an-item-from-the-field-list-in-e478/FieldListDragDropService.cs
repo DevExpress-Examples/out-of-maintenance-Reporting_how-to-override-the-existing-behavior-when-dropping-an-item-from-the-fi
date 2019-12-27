@@ -27,9 +27,7 @@ namespace FieldListDragDrop {
             XRRichText demoRichText = new XRRichText();
             PointF location = GetDragDropLocation(e, demoRichText, parent);
 
-#pragma warning disable CS0612 // Type or member is obsolete
             DesignToolHelper.AddToContainer(Host, demoRichText);
-#pragma warning restore CS0612 // Type or member is obsolete
 
             demoRichText.LocationF = location;
             demoRichText.Size = new Size(100, 25);

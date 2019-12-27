@@ -35,9 +35,7 @@ Namespace FieldListDragDrop
             Dim xRLabel As New XRRichText()
             Dim location As PointF = GetDragDropLocation(e, xRLabel, parent)
 
-#Disable Warning BC40008 ' Type or member is obsolete
             DesignToolHelper.AddToContainer(Host, xRLabel)
-#Enable Warning BC40008 ' Type or member is obsolete
 
             xRLabel.LocationF = location
             xRLabel.Size = New Size(100, 25)
